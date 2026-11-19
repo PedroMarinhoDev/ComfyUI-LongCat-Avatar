@@ -1,0 +1,6 @@
+ref/
+__pycache__/
+*.pyc
+dev/out/
+dev/server/server.log
+dev/server/server.pid

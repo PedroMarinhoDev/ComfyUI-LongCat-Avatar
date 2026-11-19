@@ -1,0 +1,16 @@
+ComfyUI-LongCat-Avatar is licensed under the GNU General Public License v3.0 (LICENSE), like ComfyUI, whose code it
+imports.
+
+It includes code adapted from LongCat-Video (https://github.com/meituan-longcat/LongCat-Video), Copyright (c) 2025
+Meituan, licensed under the MIT License (LICENSE-MIT): the DiT with its audio cross-attention, the audio projection,
+the Whisper feature windows, the sigma schedules and the segment continuation in longcat_avatar/ are reimplemented on
+ComfyUI's ops after the release's code, keeping the released module names so the weights load as they are.
+
+The model weights are not part of this repository:
+
+- LongCat-Video-Avatar 1.6 by the Meituan LongCat team, MIT: https://huggingface.co/meituan-longcat/LongCat-Video-Avatar-1.6
+- the int8 ConvRot, W6A8 and W4A8 transformer files, converted from the above:
+  https://huggingface.co/PedroMarinhoDev/LongCat-Video-Avatar-1.6-ComfyUI
+
+The demo in assets/ starts from assets/avatar/single/man.png of the LongCat-Video repository; the video is rendered
+with these nodes.
