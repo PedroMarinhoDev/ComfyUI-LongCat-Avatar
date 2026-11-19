@@ -9,7 +9,7 @@ ComfyUI's ops after the release's code, keeping the released module names so the
 The model weights are not part of this repository:
 
 - LongCat-Video-Avatar 1.6 by the Meituan LongCat team, MIT: https://huggingface.co/meituan-longcat/LongCat-Video-Avatar-1.6
-- the int8 ConvRot, W6A8 and W4A8 transformer files, converted from the above:
+- the same as single ComfyUI files (bf16, int8 ConvRot, W6A8, W4A8, the two LoRAs, the Whisper large-v3 encoder):
   https://huggingface.co/PedroMarinhoDev/LongCat-Video-Avatar-1.6-ComfyUI
 
 The demo in assets/ starts from assets/avatar/single/man.png of the LongCat-Video repository; the video is rendered

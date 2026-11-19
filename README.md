@@ -48,27 +48,24 @@ its sound</sub>
    ComfyUI-Manager, or run `comfy node install longcat-avatar-native`, or clone this repository into
    `ComfyUI/custom_nodes`. It needs no packages beyond ComfyUI's own.
 
-2. **Get the files.** The quantized transformers are on Hugging Face, ready to use:
-   [PedroMarinhoDev/LongCat-Video-Avatar-1.6-ComfyUI](https://huggingface.co/PedroMarinhoDev/LongCat-Video-Avatar-1.6-ComfyUI) (see [Which file](#which-file)). The two LoRAs, the
-   Whisper encoder and the bf16 transformer are not hosted in ComfyUI form: download the release
-   ([meituan-longcat/LongCat-Video-Avatar-1.6](https://huggingface.co/meituan-longcat/LongCat-Video-Avatar-1.6)) and
-   convert it once:
-
-   ```bash
-   python custom_nodes/ComfyUI-LongCat-Avatar/tools/convert.py <release folder> ComfyUI/models
-   ```
+2. **Get the files** from Hugging Face,
+   [PedroMarinhoDev/LongCat-Video-Avatar-1.6-ComfyUI](https://huggingface.co/PedroMarinhoDev/LongCat-Video-Avatar-1.6-ComfyUI), whose folders mirror `ComfyUI/models`: one transformer
+   (see [Which file](#which-file)), the two LoRAs and the Whisper encoder.
 
    | Folder | File | Size | Source |
    | --- | --- | --- | --- |
-   | diffusion_models | `longcat-video-avatar/longcat_video_avatar_1.6_bf16.safetensors` | 29.5 GiB | `base_model/` |
-   | loras | `longcat-video-avatar/longcat_video_avatar_1.6_dmd_lora_bf16.safetensors` | 1.55 GiB | `loraA/` (DMD) |
-   | loras | `longcat-video-avatar/longcat_video_avatar_1.6_opsd_lora_bf16.safetensors` | 1.55 GiB | `loraB/` (OPSD) |
-   | audio_encoders | `whisper_large_v3_encoder_fp16.safetensors` | 1.19 GiB | `whisper-large-v3/` (encoder only) |
+   | diffusion_models | [`longcat-video-avatar/longcat_video_avatar_1.6_bf16.safetensors`](https://huggingface.co/PedroMarinhoDev/LongCat-Video-Avatar-1.6-ComfyUI/blob/main/diffusion_models/longcat-video-avatar/longcat_video_avatar_1.6_bf16.safetensors), or a smaller one | 29.5 GiB | `base_model/` |
+   | loras | [`longcat-video-avatar/longcat_video_avatar_1.6_dmd_lora_bf16.safetensors`](https://huggingface.co/PedroMarinhoDev/LongCat-Video-Avatar-1.6-ComfyUI/blob/main/loras/longcat-video-avatar/longcat_video_avatar_1.6_dmd_lora_bf16.safetensors) | 1.55 GiB | `loraA/` (DMD) |
+   | loras | [`longcat-video-avatar/longcat_video_avatar_1.6_opsd_lora_bf16.safetensors`](https://huggingface.co/PedroMarinhoDev/LongCat-Video-Avatar-1.6-ComfyUI/blob/main/loras/longcat-video-avatar/longcat_video_avatar_1.6_opsd_lora_bf16.safetensors) | 1.55 GiB | `loraB/` (OPSD) |
+   | audio_encoders | [`whisper_large_v3_encoder_fp16.safetensors`](https://huggingface.co/PedroMarinhoDev/LongCat-Video-Avatar-1.6-ComfyUI/blob/main/audio_encoders/whisper_large_v3_encoder_fp16.safetensors) | 1.19 GiB | `whisper-large-v3/` (encoder only) |
    | text_encoders | `umt5_xxl_bf16.safetensors` (or any Wan 2.1 UMT5 file) | | identical to Wan 2.1's |
    | vae | `wan_2.1_vae.safetensors` | | identical to Wan 2.1's |
 
    The text encoder and VAE of LongCat-Video are byte-identical to Wan 2.1's (same sha256 on Hugging Face), so the
-   Wan 2.1 files you may already have work. For a smaller DiT, download a quantized file (see [Which file](#which-file)).
+   Wan 2.1 files you may already have work. The Source column is the folder of the release
+   ([meituan-longcat/LongCat-Video-Avatar-1.6](https://huggingface.co/meituan-longcat/LongCat-Video-Avatar-1.6)) each
+   file was made from; to make them yourself, download it and run
+   `python custom_nodes/ComfyUI-LongCat-Avatar/tools/convert.py <release folder> ComfyUI/models`.
 
 3. **Open a workflow and run.** Drag [`example_workflows/longcat_avatar_video.json`](example_workflows/longcat_avatar_video.json) into
    ComfyUI, pick your start image and speech, write the prompt and queue. The node makes the whole video and outputs a
@@ -89,7 +86,7 @@ final layer in bf16. They load with the same node, LoRAs included.
 
 | File | Size | Step (4090, 768x512x93) | Layer output error (random inputs) |
 | --- | --- | --- | --- |
-| `..._bf16` (convert the [release](https://huggingface.co/meituan-longcat/LongCat-Video-Avatar-1.6)) | 29.5 GiB | 14.5-15.0 s | - |
+| [`..._bf16`](https://huggingface.co/PedroMarinhoDev/LongCat-Video-Avatar-1.6-ComfyUI/blob/main/diffusion_models/longcat-video-avatar/longcat_video_avatar_1.6_bf16.safetensors) | 29.5 GiB | 14.5-15.0 s | - |
 | [`..._int8_convrot`](https://huggingface.co/PedroMarinhoDev/LongCat-Video-Avatar-1.6-ComfyUI/blob/main/diffusion_models/longcat-video-avatar/longcat_video_avatar_1.6_int8_convrot.safetensors) | 14.9 GiB | 10.5 s | 1.4% |
 | [`..._w6a8`](https://huggingface.co/PedroMarinhoDev/LongCat-Video-Avatar-1.6-ComfyUI/blob/main/diffusion_models/longcat-video-avatar/longcat_video_avatar_1.6_w6a8.safetensors) | 12.3 GiB | 10.6 s | 2.1% |
 | [`..._w4a8`](https://huggingface.co/PedroMarinhoDev/LongCat-Video-Avatar-1.6-ComfyUI/blob/main/diffusion_models/longcat-video-avatar/longcat_video_avatar_1.6_w4a8.safetensors) | 8.8 GiB | 10.6 s | 6.4% |
