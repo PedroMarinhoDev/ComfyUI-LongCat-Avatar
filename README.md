@@ -44,8 +44,8 @@ its sound</sub>
 
 ## Quick start
 
-1. **Install the nodes** and restart ComfyUI. Search for **LongCat Avatar (talking video from speech)** in
-   ComfyUI-Manager, or run `comfy node install comfyui-longcat-avatar`, or clone this repository into
+1. **Install the nodes** and restart ComfyUI. Search for **LongCat Avatar Native** in
+   ComfyUI-Manager, or run `comfy node install longcat-avatar-native`, or clone this repository into
    `ComfyUI/custom_nodes`. It needs no packages beyond ComfyUI's own.
 
 2. **Get the files.** The quantized transformers are on Hugging Face, ready to use:

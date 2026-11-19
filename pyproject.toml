@@ -1,5 +1,5 @@
 [project]
-name = "comfyui-longcat-avatar"
+name = "longcat-avatar-native"
 description = "LongCat-Video-Avatar 1.6 by Meituan natively in ComfyUI: talking video from a start image, a prompt and speech, as long as the speech. Distilled 8-step and base 50-step nodes on ComfyUI's samplers, LoRA patches and memory management; bf16, int8 ConvRot, W6A8 and W4A8 files."
 version = "1.0.0"
 license = { file = "LICENSE" }
@@ -15,7 +15,7 @@ Documentation = "https://github.com/PedroMarinhoDev/ComfyUI-LongCat-Avatar#readm
 
 [tool.comfy]
 PublisherId = "pedromarinhodev"
-DisplayName = "LongCat Avatar (talking video from speech)"
+DisplayName = "LongCat Avatar Native (talking video from speech)"
 Icon = "https://raw.githubusercontent.com/PedroMarinhoDev/ComfyUI-LongCat-Avatar/main/assets/registry-icon.png"
 Banner = "https://raw.githubusercontent.com/PedroMarinhoDev/ComfyUI-LongCat-Avatar/main/assets/registry-banner.png"
 requires-comfyui = ">=0.44.0"
