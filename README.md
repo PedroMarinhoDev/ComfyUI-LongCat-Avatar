@@ -48,6 +48,17 @@ its sound</sub>
    ComfyUI-Manager, or run `comfy node install longcat-avatar-native`, or clone this repository into
    `ComfyUI/custom_nodes`. It needs no packages beyond ComfyUI's own.
 
+   On Windows, from this checkout, register it in an existing ComfyUI installation with:
+
+   ```powershell
+   powershell -NoProfile -ExecutionPolicy Bypass -File .\tools\install_comfyui.ps1 -ComfyUIPath "C:\ComfyUI"
+   ```
+
+   Pass either the folder containing ComfyUI's `main.py` or the root of its Windows portable bundle. The installer
+   creates a junction, so edits in this checkout are immediately reflected in
+   `custom_nodes\ComfyUI-LongCat-Avatar`; it refuses to overwrite an existing folder or link. Restart ComfyUI after
+   installing.
+
 2. **Get the files** from Hugging Face,
    [PedroMarinhoDev/LongCat-Video-Avatar-1.6-ComfyUI](https://huggingface.co/PedroMarinhoDev/LongCat-Video-Avatar-1.6-ComfyUI), whose folders mirror `ComfyUI/models`: one transformer
    (see [Which file](#which-file)), the two LoRAs and the Whisper encoder.
@@ -58,7 +69,7 @@ its sound</sub>
    | loras | [`longcat-video-avatar/longcat_video_avatar_1.6_dmd_lora_bf16.safetensors`](https://huggingface.co/PedroMarinhoDev/LongCat-Video-Avatar-1.6-ComfyUI/blob/main/loras/longcat-video-avatar/longcat_video_avatar_1.6_dmd_lora_bf16.safetensors) | 1.55 GiB | `loraA/` (DMD) |
    | loras | [`longcat-video-avatar/longcat_video_avatar_1.6_opsd_lora_bf16.safetensors`](https://huggingface.co/PedroMarinhoDev/LongCat-Video-Avatar-1.6-ComfyUI/blob/main/loras/longcat-video-avatar/longcat_video_avatar_1.6_opsd_lora_bf16.safetensors) | 1.55 GiB | `loraB/` (OPSD) |
    | audio_encoders | [`whisper_large_v3_encoder_fp16.safetensors`](https://huggingface.co/PedroMarinhoDev/LongCat-Video-Avatar-1.6-ComfyUI/blob/main/audio_encoders/whisper_large_v3_encoder_fp16.safetensors) | 1.19 GiB | `whisper-large-v3/` (encoder only) |
-   | text_encoders | `umt5_xxl_bf16.safetensors` (or any Wan 2.1 UMT5 file) | | identical to Wan 2.1's |
+   | text_encoders | `umt5_xxl_fp16.safetensors` (or any Wan 2.1 UMT5 file) | | identical to Wan 2.1's |
    | vae | `wan_2.1_vae.safetensors` | | identical to Wan 2.1's |
 
    The text encoder and VAE of LongCat-Video are byte-identical to Wan 2.1's (same sha256 on Hugging Face), so the
