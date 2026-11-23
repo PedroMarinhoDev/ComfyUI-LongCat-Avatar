@@ -8,7 +8,7 @@ async function makeWorkflows() {
   const FILES = `**Files**
 - diffusion_models/longcat-video-avatar/longcat_video_avatar_1.6_bf16.safetensors (or _int8_convrot, _w6a8, _w4a8)
 - loras/longcat-video-avatar/longcat_video_avatar_1.6_dmd_lora_bf16.safetensors and ..._opsd_lora_bf16.safetensors
-- text_encoders/umt5_xxl_bf16.safetensors (Wan 2.1's), vae/wan_2.1_vae.safetensors
+- text_encoders/umt5_xxl_fp16.safetensors (Wan 2.1's), vae/wan_2.1_vae.safetensors
 - audio_encoders/whisper_large_v3_encoder_fp16.safetensors
 
 Made with tools/convert.py from [meituan-longcat/LongCat-Video-Avatar-1.6](https://huggingface.co/meituan-longcat/LongCat-Video-Avatar-1.6).
@@ -40,8 +40,8 @@ ${FILES}`;
   return results;
 
   function common(add, link) {
-    add("model", "LongCatAvatarModelLoader", { unet_name: "longcat-video-avatar/longcat_video_avatar_1.6_bf16.safetensors" });
-    add("clip", "CLIPLoader", { clip_name: "umt5_xxl_bf16.safetensors", type: "wan" });
+    add("model", "LongCatAvatarModelLoader", { unet_name: "longcat-video-avatar/longcat_video_avatar_1.6_w4a8.safetensors" });
+    add("clip", "CLIPLoader", { clip_name: "umt5_xxl_fp16.safetensors", type: "wan" });
     add("pos", "CLIPTextEncode", { text: PROMPT }, "Prompt");
     add("vae", "VAELoader", { vae_name: "wan_2.1_vae.safetensors" });
     add("image", "LoadImage", { image: "longcat_avatar_man.png" });
